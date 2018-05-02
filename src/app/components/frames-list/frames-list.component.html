@@ -1,0 +1,43 @@
+<div id="frames-wrapper">
+  <div class="row">
+      <div class="col-xs-12">
+        <div class="page-header">
+          <h2>Molduras de Madera, Aluminio y Poliestireno</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div *ngIf="frames?.length > 0" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div *ngFor="let cat of categories" class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading{{cat.id}}">
+              <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{cat.id}}" aria-expanded="true" attr.aria-controls="collapse{{cat.id}}">
+                  {{cat.name}}
+                </a>
+              </h4>
+            </div>
+            <div id="collapse{{cat.id}}" class="panel-collapse collapse in" role="tabpanel" attr.aria-labelledby="heading{{cat.id}}">
+              <div class="panel-body">
+                  <div *ngFor="let frame of frames | filterByCategoryID: cat.id" class="col-xs-3">
+                      <div class="thumbnail"> 
+                        <img alt="100%x200" data-src="holder.js/100%x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDMyMCAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTYzMjE4YjNmYjMgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxNnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNjMyMThiM2ZiMyI+PHJlY3Qgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMTguNDc2NTYyNSIgeT0iMTA3LjIiPjMyMHgyMDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true" style="height: 160px; width: 160px; display: block;"> 
+                        <div class="caption"> 
+                          <h4>{{frame.name}}</h4> 
+                          <p>Modelo: {{frame.model}}</p>
+                          <p>Ancho: {{frame.width}}, Alto: {{frame.height}}</p>
+                          <p>Precio: ${{frame.price}}</p>                 
+                          <div class="input-group"> 
+                            <span class="input-group-addon"> 
+                              <input type="checkbox" (change)="onFrameCheck($event.target.checked, frame)"> 
+                            </span> 
+                            <input class="form-control" value="{{frame.quantity}}" (change)="onValueChange(frame.model, $event.target.value)" [attr.disabled]="frame.checked"> 
+                          </div>        
+                        </div> 
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>                        
+        </div>      
+    </div>
+</div>
