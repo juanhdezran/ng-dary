@@ -3,6 +3,8 @@ import { AsyncPipe } from '@angular/common';
 import { FramesService } from '../../api/services/frames.service';
 import { Frame } from '../../api/models/frames';
 import { CATEGORIES } from '../../api/services/category.service';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'frames-list',
@@ -12,12 +14,15 @@ import { CATEGORIES } from '../../api/services/category.service';
 export class FramesListComponent implements OnInit {
   frames: Frame[] = [];
   categories = CATEGORIES;
-  total: number;
+  total: number =0;
   framesChecked: Frame[] = [];
 
   constructor(private framesService: FramesService) { }  
   ngOnInit() {
     this.getFrames();
+    $('.collapse').collapse({
+      toggle: false
+    });
   }
 
   getFrames(){
@@ -27,7 +32,7 @@ export class FramesListComponent implements OnInit {
     );         
   }
 
-  onFrameCheck(e, frm){
+  onFrameCheck(e, frm: Frame){
       this.frames = this.frames.map(f => {
         if(f.model === frm.model){
           f.checked = e;
@@ -42,6 +47,17 @@ export class FramesListComponent implements OnInit {
     this.frames = this.frames.map(f => {
       if(f.model === model){
         f.quantity = quantity;
+      }
+      return f;
+    });
+    this.calculateTotal();
+  }
+
+  unCheck(frm: Frame): void{
+    this.frames = this.frames.map(f => {
+      if(f.model === frm.model){
+        f.checked = false;
+        f.quantity = 1;
       }
       return f;
     });
@@ -70,7 +86,7 @@ export class FramesListComponent implements OnInit {
         price: parseInt(line[2]),
         width: parseInt(line[3]),
         height: parseInt(line[4]),
-        image: line[5],
+        image: line[5].replace(/\s/g, ""),
         category: parseInt(line[6]),
         quantity: 1,
         checked: false

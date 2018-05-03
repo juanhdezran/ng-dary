@@ -2,6 +2,38 @@
     max-width: 225px;    
 }
 
-#frames-wrapper .col-xs-3{
-    padding-top: 20px;
+#frames-wrapper .col-xs-2, #frames-wrapper .col-xs-8, #frames-wrapper .col-xs-12, #frames-wrapper .col-xs-4{
+    padding-top: 10px;
+}
+
+#frames-wrapper p{
+    margin: 0 0 2px;
+    font-size: 12px;
+}
+
+#frames-wrapper .caption h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+#frames-wrapper .form-control{
+    height: 29px;
+}
+
+#lbl-total {
+    font-size: 30px;
+}
+
+#total {
+    font-size: 30px;
+    margin-left: 30px;
+}
+
+#frames-wrapper .label-success{
+    margin-right: 4px;
+}
+#frames-wrapper .label-success a{
+    margin-left: 4px;
+    cursor: pointer;
 }

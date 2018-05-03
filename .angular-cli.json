@@ -22,7 +22,9 @@
         "styles.css",
         "bootstrap.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "bootstrap.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
