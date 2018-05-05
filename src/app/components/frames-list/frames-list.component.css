@@ -37,3 +37,20 @@
     margin-left: 4px;
     cursor: pointer;
 }
+.page-header {
+    background-image: url("/assets/images/header.png") ;
+    background-color: #000;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: 1000px ;
+    background-repeat: no-repeat;
+    height: 118px;
+    width: 100%;
+}
+
+.page-header h2{
+    padding-top: 64px;
+    padding-left: 250px;
+    color: #fff;
+}
