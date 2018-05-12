@@ -70,16 +70,16 @@ export class FramesListComponent implements OnInit {
       if(e.checked){
         this.total += (e.price * e.quantity);
       }      
-    });
-    console.log(this.total);
+    });    
   }
 
   private extractData(res: any){    
     let csvData = res['_body'] || '';
-    let allTextLines = csvData.split(/\r\n|\n/);    
+    let allTextLines = csvData.split(/\r\n|\n/);        
     let lines = [];
     lines = allTextLines.map(ln => {
       let line = ln.split(',');
+      console.log(line);
       let frm: Frame = {
         name: line[0],
         model: line[1],
