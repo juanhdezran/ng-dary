@@ -4,5 +4,6 @@ export class Frame{
     detail: object;
     image: string;
     category: number;
-    quantity: number;    
+    quantity: number;
+    checked: boolean;    
 }
