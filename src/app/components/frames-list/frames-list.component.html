@@ -7,18 +7,20 @@
         <div class="alert alert-info" role="alert">Seleccione los marcos que desee agregar a su cotización para realizar el cálculo total. Recuerde que todos los precios estan sujetos a cambios según disponibilidad, el monto mostrado puede variar, pero puede servir como base. Última actualización de precios <b>15 de Abril del 2018</b>.</div>
         <div class="well well-lg text-right">
           <div class="row">
-              <div class="col-xs-8">
-                  <div *ngIf="frames?.length > 0" class="col-xs-12 text-left">
-                      <div *ngIf="(frames | isInFramesChecked)?.length"><b>Marcos seleccionados:</b></div>
+              <div class="col-xs-8" style="padding-top: 0px;">
+                  <div *ngIf="frames?.length > 0" class="col-xs-12 text-left" style="padding-top: 0px;">
+                      <div *ngIf="(frames | isInFramesChecked)?.length" style="margin-bottom: 10px;"><b>Marcos seleccionados:</b></div>
                       <span *ngFor="let frame of frames | isInFramesChecked" class="label label-success">{{frame.model}}<a (click)="unCheck(frame)">X</a></span>
-                  </div>
-                  <div class="col-xs-12 text-left">
-                      <button [disabled]="!(frames | isInFramesChecked)?.length" type="button" class="btn btn-primary">Enviar Solicitud</button>
                   </div>                  
               </div>
-              <div class="col-xs-4">
+              <div class="col-xs-4" style="padding-top: 0px;">
+                <div class="col-xs-12" style="padding-top: 0px;">
                   <span id="lbl-total">Total:</span>
-                  <span id="total">${{total | number}}</span>
+                  <span id="total">{{total | currency:'MXN':'$'}}</span>
+                </div>
+                <div class="col-xs-12 text-right">
+                  <button id="send-request" (click)="showModal()" [disabled]="!(frames | isInFramesChecked)?.length" type="button" class="btn btn-primary">Enviar Solicitud</button>
+                </div>                  
               </div>
           </div>                    
         </div>
@@ -43,7 +45,7 @@
                         <h4>{{frame.name}}</h4> 
                         <p>Modelo: {{frame.model}}</p>
                         <p>Ancho: {{frame.width}}, Alto: {{frame.height}}</p>
-                        <p>Precio: ${{frame.price}}</p>                 
+                        <p>Precio: ${{frame.price| currency:'MXN':'$'}}</p>                 
                         <div class="input-group"> 
                           <span class="input-group-addon"> 
                             <input type="checkbox" (change)="onFrameCheck($event.target.checked, frame)" [checked]="frame.checked"> 
@@ -59,3 +61,4 @@
         </div>      
     </div>
 </div>
+<modal [frames]="frames" [totalFrames]="total"></modal>

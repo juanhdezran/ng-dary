@@ -105,4 +105,8 @@ export class FramesListComponent implements OnInit {
     return errMsg;
   }
 
+  showModal(){
+    $('#modal').modal('show');
+  }  
+
 }

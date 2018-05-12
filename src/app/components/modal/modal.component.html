@@ -1,0 +1,72 @@
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Enviar Solicitud</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-12" style="padding-top: 0px;">
+              <div class="alert alert-warning" role="alert">Por favor ingrese sus datos personales para <b>Estudio Foto Dary</b> se ponga en contacto con usted lo antes posible y tenerle noticias acerca de su cotización.<br><br><b>Recuerde que todos los precios estan sujetos a cambios sin previo aviso y el monto total de esta cotización puede variar.</b> </div>
+          </div>
+            <div class="col-xs-6" style="padding-top: 0px;">
+                <form>
+                  <div class="form-group">
+                    <label for="nombreCompleto">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" placeholder="Nombre Completo">
+                  </div>
+                  <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico">
+                  </div>       
+                  <div class="form-group">
+                    <label for="ciudad">Ciudad</label>
+                    <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ciudad">
+                  </div>                    
+                  <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
+                  </div>   
+                </form>            
+              </div>
+              <div class="col-xs-6" style="padding-top: 0px;">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Cantidad</th>
+                      <th>Descripción</th>
+                      <th class="text-right">Precio U.</th>
+                      <th class="text-right">Importe</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="frames">
+                    <tr *ngFor="let frame of frames | isInFramesChecked">
+                      <td>{{frame.quantity}}</td>
+                      <td>{{frame.model}} {{frame.width}}x{{frame.height}}</td>
+                      <td class="text-right">{{frame.price | currency:'MXN':'$'}}</td>
+                      <td class="text-right">{{(frame.quantity * frame.price)| currency:'MXN':'$'}}</td>                                
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td class="text-right"><b>TOTAL:</b></td>
+                      <td class="text-right">{{totalFrames|currency:'MXN':'$'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="sendInfo()">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
