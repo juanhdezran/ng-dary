@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class FramesService {
 
-  csvUrl: string = '../../../assets/storage/db.csv';
+  csvUrl: string = '../../../assets/storage/db.json';
   data: Frame[] = [];
   constructor(private http: Http) { }
 

@@ -1,9 +1,9 @@
+import { DetailFrame } from './detail.frame';
 export class Frame{
     name: string;
     model: string;
-    detail: object;
+    detail = new DetailFrame();
     image: string;
-    category: number;
-    quantity: number;
+    category: number;    
     checked: boolean;    
 }

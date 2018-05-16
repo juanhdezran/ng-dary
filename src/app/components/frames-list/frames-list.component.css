@@ -1,6 +1,11 @@
 #frames-wrapper .thumbnail{
     max-width: 225px; 
-    border-radius: 0px;   
+    border-radius: 0px;  
+    cursor: pointer; 
+}
+
+#frames-wrapper .thumbnail:hover{
+    background-color: aquamarine;
 }
 
 #frames-wrapper .col-xs-2, #frames-wrapper .col-xs-8, #frames-wrapper .col-xs-12, #frames-wrapper .col-xs-4{
@@ -16,6 +21,11 @@
     font-size: 16px;
     font-weight: 600;
     margin-top: 0;
+    margin-bottom: 0;
+}
+
+#frames-wrapper .caption{
+    padding: 2px;
 }
 
 #frames-wrapper .form-control{

@@ -9,6 +9,7 @@ import { FramesService } from './api/services/frames.service';
 import { FilterByCategoryID } from './api/pipes/filterByCategoryID.pipe';
 import { IsInFramesChecked } from './api/pipes/isInFramesChecked.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { ModalDetailComponent } from './components/modal-detail/modal-detail.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ModalComponent } from './components/modal/modal.component';
     FramesListComponent,
     FilterByCategoryID,
     IsInFramesChecked,
-    ModalComponent
+    ModalComponent,
+    ModalDetailComponent
   ],
   imports: [
     BrowserModule,

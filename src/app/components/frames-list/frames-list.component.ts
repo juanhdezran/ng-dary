@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FramesService } from '../../api/services/frames.service';
 import { Frame } from '../../api/models/frames';
+import { DetailFrame } from '../../api/models/detail.frame';
 import { CATEGORIES } from '../../api/services/category.service';
 declare var jquery:any;
 declare var $ :any;
@@ -16,6 +17,7 @@ export class FramesListComponent implements OnInit {
   categories = CATEGORIES;
   total: number =0;
   framesChecked: Frame[] = [];
+  frameSelected: Frame;
 
   constructor(private framesService: FramesService) { }  
   ngOnInit() {
@@ -32,21 +34,22 @@ export class FramesListComponent implements OnInit {
     );         
   }
 
-  onFrameCheck(e, frm: Frame){
-      this.frames = this.frames.map(f => {
-        if(f.model === frm.model){
-          f.checked = e;
-        }
-        return f;
-      });
-    this.calculateTotal();  
+  onFrameCheck(obj){
+    this.frames = this.frames.map(f => {
+      if(f.model === this.frameSelected.model){
+        f.checked = true;
+        f.detail[obj.index].checked = obj.checked;        
+      }
+      return f;
+    });
+    //this.calculateTotal();  
   }
 
   onValueChange(model, quantity){
     quantity = (quantity === "")? 1 : quantity;
     this.frames = this.frames.map(f => {
       if(f.model === model){
-        f.quantity = quantity;
+        //f.quantity = quantity;
       }
       return f;
     });
@@ -57,7 +60,7 @@ export class FramesListComponent implements OnInit {
     this.frames = this.frames.map(f => {
       if(f.model === frm.model){
         f.checked = false;
-        f.quantity = 1;
+        //f.quantity = 1;
       }
       return f;
     });
@@ -68,32 +71,13 @@ export class FramesListComponent implements OnInit {
     this.total = 0;
     this.frames.forEach(e => {
       if(e.checked){
-        this.total += (e.price * e.quantity);
+        //this.total += (e.price * e.quantity);
       }      
     });    
   }
 
   private extractData(res: any){    
-    let csvData = res['_body'] || '';
-    let allTextLines = csvData.split(/\r\n|\n/);        
-    let lines = [];
-    lines = allTextLines.map(ln => {
-      let line = ln.split(',');
-      console.log(line);
-      let frm: Frame = {
-        name: line[0],
-        model: line[1],
-        price: parseInt(line[2]),
-        width: parseInt(line[3]),
-        height: parseInt(line[4]),
-        image: line[5].replace(/\s/g, ""),
-        category: parseInt(line[6]),
-        quantity: 1,
-        checked: false
-      };
-      return frm;      
-    });
-    this.frames = lines;
+    this.frames = JSON.parse(res['_body'] || '');
   }
 
   private handleError (error: any) {
@@ -108,5 +92,10 @@ export class FramesListComponent implements OnInit {
   showModal(){
     $('#modal').modal('show');
   }  
+
+  showDetail(frm){
+    this.frameSelected = frm;    
+    setTimeout(() =>{$("#modal-detail").modal('show');}, 1000);    
+  }
 
 }
