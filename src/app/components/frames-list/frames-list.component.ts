@@ -34,33 +34,54 @@ export class FramesListComponent implements OnInit {
     );         
   }
 
-  onFrameCheck(obj){
+  onFrameCheck(obj){    
+    this.frameSelected.detail[obj.index].checked = obj.checked 
     this.frames = this.frames.map(f => {
       if(f.model === this.frameSelected.model){
         f.checked = true;
         f.detail[obj.index].checked = obj.checked;        
-      }
+        f.checked = false;
+        f.detail.forEach(element => {
+          if(element.checked === true){
+            f.checked = true;
+          }
+        });
+        console.log(f);
+      }      
       return f;
+
     });
-    //this.calculateTotal();  
+    this.calculateTotal();  
   }
 
-  onValueChange(model, quantity){
-    quantity = (quantity === "")? 1 : quantity;
+  onValueChange(obj){    
+    if(obj.index == undefined){
+      return;
+    }
     this.frames = this.frames.map(f => {
-      if(f.model === model){
-        //f.quantity = quantity;
-      }
+      if(f.model === this.frameSelected.model){                
+        f.detail[obj.index].quantity = (obj.quantity === "")? 1 : obj.quantity;
+      }      
       return f;
     });
     this.calculateTotal();
   }
 
-  unCheck(frm: Frame): void{
+  unCheck(frm: Frame, width: number, height: number): void{
     this.frames = this.frames.map(f => {
       if(f.model === frm.model){
+        f.detail.forEach((element, index) => {
+          if(element.width == width && element.height == height){
+            f.detail[index].checked = false;
+            f.detail[index].quantity = 1;
+          }
+        });
         f.checked = false;
-        //f.quantity = 1;
+        f.detail.forEach(element => {
+          if(element.checked === true){
+            f.checked = true;
+          }
+        });                
       }
       return f;
     });
@@ -71,7 +92,11 @@ export class FramesListComponent implements OnInit {
     this.total = 0;
     this.frames.forEach(e => {
       if(e.checked){
-        //this.total += (e.price * e.quantity);
+        e.detail.forEach(d => {
+          if(d.checked){
+            this.total += (d.price * d.quantity);            
+          }
+        });        
       }      
     });    
   }
@@ -95,7 +120,7 @@ export class FramesListComponent implements OnInit {
 
   showDetail(frm){
     this.frameSelected = frm;    
-    setTimeout(() =>{$("#modal-detail").modal('show');}, 1000);    
+    setTimeout(() =>{$("#modal-detail").modal('show');}, 500);    
   }
 
 }

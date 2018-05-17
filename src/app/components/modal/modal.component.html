@@ -36,30 +36,26 @@
                 </form>            
               </div>
               <div class="col-xs-6" style="padding-top: 0px;">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Cantidad</th>
-                      <th>Descripción</th>
-                      <th class="text-right">Precio U.</th>
-                      <th class="text-right">Importe</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngIf="frames">
-                    <tr *ngFor="let frame of frames | isInFramesChecked">
-                      <td>{{frame.quantity}}</td>
-                      <td>{{frame.model}} {{frame.width}}x{{frame.height}}</td>
-                      <td class="text-right">{{frame.price | currency:'MXN':'$'}}</td>
-                      <td class="text-right">{{(frame.quantity * frame.price)| currency:'MXN':'$'}}</td>                                
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td class="text-right"><b>TOTAL:</b></td>
-                      <td class="text-right">{{totalFrames|currency:'MXN':'$'}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="row" style="background: #e0e0e0; margin: 2px;">
+                    <div class="col-xs-2"><b>Cantidad</b></div>
+                    <div class="col-xs-4"><b>Descripción</b></div>
+                    <div class="col-xs-3"><b>Precio U.</b></div>
+                    <div class="col-xs-3"><b>Importe</b></div>
+                </div>
+                <div class="row" *ngFor="let frame of frames | isInFramesChecked">
+                  <div class="col-xs-12" *ngFor="let det of frame.detail" [ngStyle]="{'display': det.checked ? 'block' : 'none' }">
+                    <div class="col-xs-2">{{det.quantity}}</div>
+                    <div class="col-xs-4">{{frame.model}} {{det.width}} x {{det.height}}</div>
+                    <div class="col-xs-3">{{det.price | currency:'MXN':'$'}}</div>
+                    <div class="col-xs-3">{{(det.quantity * det.price) | currency:'USD':'$'}}</div>
+                  </div>
+                </div>
+                <div class="row" style="background: #e0e0e0; margin: 2px;">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-4"></div>
+                    <div class="col-xs-3"><b>TOTAL:</b></div>
+                    <div class="col-xs-3">{{totalFrames|currency:'MXN':'$'}}</div>
+                </div>
               </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 .btn, .modal-content, .alert-warning{
     border-radius: 0px!important;
 }
-.alert-warning{
-    
+
+.col-xs-2, .col-xs-3, .col-xs-8, .col-xs-12, .col-xs-4{
+    padding-top: 10px;
 }

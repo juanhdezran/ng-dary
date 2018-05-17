@@ -27,7 +27,7 @@
                     <td>{{det.width}} x {{det.height}}</td>
                     <td class="text-right">{{det.price | currency:'MXN':'$'}}</td>
                     <td>
-                      <input type="text" class="form-control" value="{{det.quantity}}">
+                      <input type="text" [disabled]="!det.checked" class="form-control" value="{{det.quantity}}" (keyup)="input(i, $event.target.value)">
                     </td>                                
                   </tr>
                 </tbody>

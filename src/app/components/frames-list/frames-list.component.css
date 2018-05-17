@@ -5,10 +5,10 @@
 }
 
 #frames-wrapper .thumbnail:hover{
-    background-color: aquamarine;
+    background-color: #0089ef;
 }
 
-#frames-wrapper .col-xs-2, #frames-wrapper .col-xs-8, #frames-wrapper .col-xs-12, #frames-wrapper .col-xs-4{
+#frames-wrapper .col-xs-2, #frames-wrapper .col-xs-3, #frames-wrapper .col-xs-8, #frames-wrapper .col-xs-12, #frames-wrapper .col-xs-4{
     padding-top: 10px;
 }
 
@@ -49,7 +49,7 @@
     border-radius: 0px !important;
 }
 #frames-wrapper .label-success a{
-    margin-left: 18px;
+    margin-left: 6px;
     cursor: pointer;
 }
 .page-header {
@@ -82,4 +82,12 @@
 
 .well{
     padding: 10px !important;
+}
+
+.frame-selected{
+    background: #00b726;
+}
+
+.frame-selected:hover{
+    background: #00b726;
 }

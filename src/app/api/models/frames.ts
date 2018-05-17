@@ -2,7 +2,7 @@ import { DetailFrame } from './detail.frame';
 export class Frame{
     name: string;
     model: string;
-    detail = new DetailFrame();
+    detail: DetailFrame[];
     image: string;
     category: number;    
     checked: boolean;    
