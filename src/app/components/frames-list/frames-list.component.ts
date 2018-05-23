@@ -45,8 +45,7 @@ export class FramesListComponent implements OnInit {
           if(element.checked === true){
             f.checked = true;
           }
-        });
-        console.log(f);
+        });        
       }      
       return f;
 

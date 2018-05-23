@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FramesListComponent } from './components/frames-list/frames-list.component';
@@ -23,7 +23,8 @@ import { ModalDetailComponent } from './components/modal-detail/modal-detail.com
   ],
   imports: [
     BrowserModule,
-    HttpModule    
+    HttpModule,
+    FormsModule    
   ],
   providers: [
     FramesService

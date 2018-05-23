@@ -14,4 +14,11 @@ export class FramesService {
     return this.http.get(this.csvUrl);
   }
 
+  sendMail(data){
+    console.log(data);
+    return this.http.post('http://localhost/mail.php', data).subscribe((response: Response) => {
+      console.log(response);
+    })
+  }
+
 }
