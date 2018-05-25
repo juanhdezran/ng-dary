@@ -16,8 +16,11 @@ export class FramesService {
 
   sendMail(data){
     console.log(data);
-    return this.http.post('http://localhost/mail.php', data).subscribe((response: Response) => {
-      console.log(response);
+    return this.http.post('http://fotodary.com/demo/mail.php', data).subscribe((response: Response) => {
+      if(response.status === 200){
+        return true;
+      }
+      return false;
     })
   }
 

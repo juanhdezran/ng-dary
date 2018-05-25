@@ -38,8 +38,13 @@ export class ModalComponent implements OnInit {
       'comentarios': this.comentarios,
       'marcos' : JSON.stringify(this.frames.filter((frame) => frame.checked))
     }
-    this.framesService.sendMail(request);
-    console.log('Se envió un email con la info del cliente ...');
+    let message = this.framesService.sendMail(request);    
+    $('#modal').modal('hide');
+    if(message){
+      alert('Se ha enviado su cotización, el equipo de Foto Estudio Dary se pondrá en contacto con usted lo antes posible.')
+      return;
+    }
+    alert('Ocurrió un error al enviar su cotización, por favor intentelo de nuevo más tarde.');
   }
 
   isValid(){
