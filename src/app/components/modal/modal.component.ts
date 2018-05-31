@@ -41,7 +41,8 @@ export class ModalComponent implements OnInit {
     let message = this.framesService.sendMail(request);    
     $('#modal').modal('hide');
     if(message){
-      alert('Se ha enviado su cotización, el equipo de Foto Estudio Dary se pondrá en contacto con usted lo antes posible.')
+      alert('Se ha enviado su cotización, el equipo de Foto Estudio Dary se pondrá en contacto con usted lo antes posible.');
+      location.href = 'http://fotodary.com/';
       return;
     }
     alert('Ocurrió un error al enviar su cotización, por favor intentelo de nuevo más tarde.');
